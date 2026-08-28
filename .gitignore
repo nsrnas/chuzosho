@@ -5,3 +5,6 @@ graphify-out/
 qa-*.png
 qa-*/
 *.log
+
+.vercel
+.env*
