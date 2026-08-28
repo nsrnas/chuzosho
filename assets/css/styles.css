@@ -299,14 +299,85 @@ h1, .display {
 .page-partnership .signal { min-height: 230px; display: grid; grid-template-columns: 120px minmax(260px,.7fr) minmax(260px,1fr); gap: 2rem; align-items: center; }
 .page-partnership .signal h3, .page-partnership .signal p { margin: 0; }
 
-.page-contact .hero-media { object-position: 64% center; }
-.page-contact main > .section { color: var(--white); background: #161613; }
-.page-contact .contact-grid { grid-template-columns: minmax(280px,.68fr) minmax(520px,1.32fr); align-items: start; }
-.page-contact .contact-intro { position: sticky; top: 130px; }
-.page-contact .contact-intro .section-title { font-size: clamp(2.8rem,5vw,5.2rem); }
-.page-contact .contact-intro .section-intro { color: rgba(255,255,255,.64); }
-.page-contact .contact-form { padding: clamp(2rem,5vw,5rem); color: var(--ink); background: var(--paper-bright); }
-.page-contact .field input, .page-contact .field select, .page-contact .field textarea { border-bottom-color: var(--ink); }
+.page-contact main { background: #080a09; }
+.contact-stage {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(8rem,13vh,11rem) 0 clamp(4rem,8vh,7rem);
+  color: var(--white);
+  background: #080a09 var(--contact-bg) 68% center / cover no-repeat;
+  isolation: isolate;
+}
+.contact-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg,rgba(7,8,7,.97) 0%,rgba(7,8,7,.88) 38%,rgba(7,8,7,.5) 69%,rgba(7,8,7,.74) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.72));
+}
+.contact-stage__grid {
+  display: grid;
+  grid-template-columns: minmax(260px,.72fr) minmax(520px,1.28fr);
+  gap: clamp(3rem,8vw,9rem);
+  align-items: center;
+  padding-inline: var(--gutter);
+}
+.page-contact .contact-intro h1 {
+  max-width: 7ch;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(3.9rem,7.4vw,8rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+.page-contact .contact-intro .section-intro {
+  max-width: 34ch;
+  margin: 2rem 0 0;
+  color: rgba(255,253,247,.72);
+  font-size: 1.08rem;
+}
+.page-contact .contact-form--glass {
+  position: relative;
+  padding: clamp(1.6rem,3.5vw,3.5rem);
+  border: 1px solid rgba(255,255,255,.24);
+  border-top: 6px solid var(--red);
+  color: var(--white);
+  background: linear-gradient(145deg,rgba(17,17,15,.82),rgba(30,26,22,.62));
+  box-shadow: 0 32px 90px rgba(0,0,0,.38);
+  backdrop-filter: blur(18px);
+}
+.page-contact .contact-form--glass::before {
+  content: "CHUZOSHO / PRODUCT INTAKE";
+  grid-column: 1 / -1;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  color: #ff6b60;
+  font: 700 .72rem/1 var(--mono);
+  letter-spacing: .14em;
+}
+.page-contact .contact-form--glass .field label { color: rgba(255,253,247,.84); }
+.page-contact .contact-form--glass .field input,
+.page-contact .contact-form--glass .field select,
+.page-contact .contact-form--glass .field textarea {
+  min-height: 54px;
+  padding: .85rem 0;
+  border-bottom-color: rgba(255,255,255,.48);
+  color: var(--white);
+  background: transparent;
+  outline: 0;
+}
+.page-contact .contact-form--glass .field textarea { min-height: 126px; }
+.page-contact .contact-form--glass .field :is(input,select,textarea):focus { border-bottom-color: #ff6b60; }
+.page-contact .contact-form--glass .field textarea::placeholder { color: rgba(255,253,247,.5); }
+.page-contact .contact-form--glass .field select option { color: var(--ink); background: var(--paper-bright); }
 
 .page-product { --product-accent: var(--red); }
 .page-harness { --product-accent: #d94a3f; }
@@ -530,33 +601,6 @@ h1, .display {
 }
 .page-partnership .signal:hover::after { color: rgba(199,55,47,.42); transform: translate(8px,-8px); }
 
-/* Contact: a compact intake dossier rather than a generic web form. */
-.page-contact main > .section { position: relative; overflow: hidden; }
-.page-contact main > .section::before {
-  content: "INTAKE / 01";
-  position: absolute;
-  right: var(--gutter);
-  top: 2rem;
-  color: rgba(255,255,255,.15);
-  font: 700 .72rem/1 var(--mono);
-  letter-spacing: .18em;
-}
-.page-contact .contact-grid { align-items: stretch; }
-.page-contact .contact-form {
-  position: relative;
-  border-top: 8px solid var(--red);
-  box-shadow: 0 35px 90px rgba(0,0,0,.28);
-}
-.page-contact .contact-form::before {
-  content: "CHUZOSHO / PRODUCT INTAKE";
-  grid-column: 1 / -1;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid var(--line);
-  color: var(--red-dark);
-  font: 700 .72rem/1 var(--mono);
-  letter-spacing: .14em;
-}
-
 @media (max-width: 900px) {
   .page-home .foundry-track { grid-template-columns: 1fr 1fr; }
   .page-home .track-step:nth-child(2),
@@ -571,6 +615,10 @@ h1, .display {
   .page-partnership .track-step { grid-column: span 6; }
   .page-partnership .track-step:nth-child(2),
   .page-partnership .track-step:nth-child(4) { transform: none; }
+  .contact-stage { align-items: start; background-position: 62% center; }
+  .contact-stage::before { background: linear-gradient(180deg,rgba(7,8,7,.92),rgba(7,8,7,.78) 48%,rgba(7,8,7,.96)); }
+  .contact-stage__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .page-contact .contact-intro h1 { max-width: 9ch; }
 }
 
 @media (max-width: 600px) {
@@ -591,6 +639,10 @@ h1, .display {
   .page-solutions .product-row:not(:first-child) h3 { font-size: clamp(2.8rem,15vw,4.6rem); }
   .page-partnership .foundry-track { grid-template-columns: 1fr; }
   .page-partnership .track-step { grid-column: auto; }
-  .page-contact main > .section::before { display: none; }
-  .page-contact .contact-form { border-top-width: 6px; }
+  .contact-stage { padding: 7.25rem 0 3.5rem; background-position: 58% center; }
+  .page-contact .contact-intro h1 { font-size: clamp(3.2rem,17vw,5.4rem); }
+  .page-contact .contact-intro .section-intro { font-size: 1rem; }
+  .page-contact .contact-form--glass { grid-template-columns: 1fr; margin-inline: 0; padding: 1.5rem var(--gutter) 2rem; }
+  .page-contact .contact-form--glass::before,
+  .page-contact .contact-form--glass .field-full { grid-column: 1; }
 }

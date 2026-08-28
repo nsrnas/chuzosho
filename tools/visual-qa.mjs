@@ -32,7 +32,7 @@ for (const route of routes) {
       await delay(120);
     });
     const dimensions = await page.evaluate(() => {
-      const hero = document.querySelector('.hero');
+        const hero = document.querySelector('.hero, .contact-stage');
       return {
         scrollWidth: document.documentElement.scrollWidth,
         clientWidth: document.documentElement.clientWidth,
@@ -66,6 +66,7 @@ for (const route of routes) {
       await page.screenshot({ path: path.join(outputDirectory, `qa-${route.split('/').filter(Boolean)[0]}-wide.png`), fullPage: false });
     }
     if (route === '/contact/' && label === 'desktop') await page.screenshot({ path: path.join(outputDirectory, 'qa-contact-desktop.png'), fullPage: true });
+    if (route === '/contact/' && label === 'mobile') await page.screenshot({ path: path.join(outputDirectory, 'qa-contact-mobile.png'), fullPage: true });
     if (route === '/solutions/harness/' && label === 'mobile') await page.screenshot({ path: path.join(outputDirectory, 'qa-harness-mobile.png'), fullPage: true });
     await page.close();
   }

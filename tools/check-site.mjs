@@ -38,6 +38,18 @@ for (const file of expected.filter((item) => item.endsWith('.html'))) {
     failed = true;
   }
 
+  if (file === 'contact/index.html') {
+    const contactStage = html.match(/<section class="[^"]*\bcontact-stage\b[^"]*"[\s\S]*?<\/section>/)?.[0];
+    if (!contactStage) {
+      console.error(`${file}: missing integrated contact stage`);
+      failed = true;
+    } else if ((contactStage.match(/<h1\b/g) || []).length !== 1) {
+      console.error(`${file}: contact stage must contain exactly one h1`);
+      failed = true;
+    }
+    continue;
+  }
+
   const hero = html.match(/<section class="[^"]*\bhero\b[^"]*">[\s\S]*?<\/section>/)?.[0];
   if (!hero) {
     console.error(`${file}: missing hero section`);
