@@ -15,11 +15,25 @@ const types = {
 };
 
 http.createServer((request, response) => {
-  const urlPath = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
-  let filePath = path.join(root, urlPath);
+  const requestTarget = request.url?.startsWith('//')
+    ? `/${request.url.replace(/^\/+/, '')}`
+    : request.url || '/';
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(
+      new URL(requestTarget, `http://${request.headers.host || `127.0.0.1:${port}`}`).pathname,
+    );
+  } catch {
+    response.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    response.end('Bad request');
+    return;
+  }
+
+  let filePath = path.resolve(root, `.${urlPath}`);
   if (urlPath.endsWith('/')) filePath = path.join(filePath, 'index.html');
   if (!path.extname(filePath) && fs.existsSync(`${filePath}.html`)) filePath = `${filePath}.html`;
-  if (!filePath.startsWith(root) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+  const isInsideRoot = filePath === root || filePath.startsWith(`${root}${path.sep}`);
+  if (!isInsideRoot || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');
     return;
