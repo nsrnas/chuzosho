@@ -1,0 +1,7 @@
+.vercel
+.env*
+node_modules/
+graphify-out/
+qa-*.png
+qa-*/
+*.log
