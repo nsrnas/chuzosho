@@ -2,7 +2,7 @@
   "name": "chuzosho",
   "version": "1.0.0",
   "private": true,
-  "description": "Chuzosho, the HOSHO DIGITAL product foundry.",
+  "description": "Chuzosho, a Hosho Digital company that turns proven solution work into focused B2B products.",
   "scripts": {
     "dev": "node tools/preview-server.mjs",
     "check": "node tools/check-site.mjs"

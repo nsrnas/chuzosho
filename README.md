@@ -1,6 +1,6 @@
 # Chuzosho
 
-Chuzosho is the HOSHŌ DIGITAL product foundry: a Vercel-ready, static multi-page website for turning proven solution work into focused B2B products.
+Chuzosho is a Hosho Digital company and product foundry: a Vercel-ready, static multi-page website for turning proven solution work into focused B2B products.
 
 Production: https://chuzosho.vercel.app
 
@@ -23,6 +23,14 @@ npx --yes vercel@latest --prod --yes
 
 The website is static and portable. It can also be uploaded to conventional hosting without a build step.
 
+## Product portfolio
+
+- ISLD
+- IProcure
+- IGRC
+
+Project ownership, daily updates, assets, blockers, theme references, and review status are maintained in `project-tracking/Chuzosho-Website-Tracking.xlsx`.
+
 ## Pending integration
 
-The contact form is a front-end prototype. Connect the confirmed HOSHŌ DIGITAL form endpoint before collecting live submissions.
+The contact form is a front-end prototype. Connect the confirmed secure form endpoint from Lokesh before collecting live submissions. Product owners and final approved product copy remain subject to assignment and approval by Evan and Sushil.

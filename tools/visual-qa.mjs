@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const origin = process.env.ORIGIN || 'http://127.0.0.1:4360';
-const defaultRoutes = ['/', '/about/', '/approach/', '/partnership/', '/contact/', '/solutions/', '/solutions/harness/', '/solutions/codegraff/', '/solutions/codedb/'];
+const defaultRoutes = ['/', '/about/', '/approach/', '/partnership/', '/contact/', '/solutions/', '/solutions/isld/', '/solutions/iprocure/', '/solutions/igrc/', '/privacy-policy/', '/accessibility/', '/terms-of-use/', '/cookies-policy/'];
 const routes = process.env.ROUTES ? process.env.ROUTES.split(',') : defaultRoutes;
 const outputDirectory = path.resolve(import.meta.dirname, '..', 'qa-20260827-v2');
 fs.mkdirSync(outputDirectory, { recursive: true });
@@ -32,7 +32,7 @@ for (const route of routes) {
       await delay(120);
     });
     const dimensions = await page.evaluate(() => {
-        const hero = document.querySelector('.hero, .contact-stage');
+        const hero = document.querySelector('.hero, .contact-stage, .legal-main');
       return {
         scrollWidth: document.documentElement.scrollWidth,
         clientWidth: document.documentElement.clientWidth,
@@ -67,7 +67,7 @@ for (const route of routes) {
     }
     if (route === '/contact/' && label === 'desktop') await page.screenshot({ path: path.join(outputDirectory, 'qa-contact-desktop.png'), fullPage: true });
     if (route === '/contact/' && label === 'mobile') await page.screenshot({ path: path.join(outputDirectory, 'qa-contact-mobile.png'), fullPage: true });
-    if (route === '/solutions/harness/' && label === 'mobile') await page.screenshot({ path: path.join(outputDirectory, 'qa-harness-mobile.png'), fullPage: true });
+    if (route === '/solutions/isld/' && label === 'mobile') await page.screenshot({ path: path.join(outputDirectory, 'qa-isld-mobile.png'), fullPage: true });
     await page.close();
   }
 }

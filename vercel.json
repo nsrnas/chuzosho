@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/solutions/harness/", "destination": "/solutions/isld/", "permanent": true },
+    { "source": "/solutions/codegraff/", "destination": "/solutions/iprocure/", "permanent": true },
+    { "source": "/solutions/codedb/", "destination": "/solutions/igrc/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/images/(.*)",

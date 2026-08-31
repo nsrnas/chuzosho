@@ -9,10 +9,14 @@ const expected = [
   'partnership/index.html',
   'contact/index.html',
   'solutions/index.html',
-  'solutions/harness/index.html',
-  'solutions/codegraff/index.html',
-  'solutions/codedb/index.html',
-  'assets/css/styles.css',
+  'solutions/isld/index.html',
+  'solutions/iprocure/index.html',
+  'solutions/igrc/index.html',
+  'privacy-policy/index.html',
+  'accessibility/index.html',
+  'terms-of-use/index.html',
+  'cookies-policy/index.html',
+  'assets/css/site-v3.css',
   'assets/js/site.js',
 ];
 
@@ -45,6 +49,14 @@ for (const file of expected.filter((item) => item.endsWith('.html'))) {
       failed = true;
     } else if ((contactStage.match(/<h1\b/g) || []).length !== 1) {
       console.error(`${file}: contact stage must contain exactly one h1`);
+      failed = true;
+    }
+    continue;
+  }
+
+  if (['privacy-policy/index.html', 'accessibility/index.html', 'terms-of-use/index.html', 'cookies-policy/index.html'].includes(file)) {
+    if ((html.match(/<h1\b/g) || []).length !== 1) {
+      console.error(`${file}: legal page must contain exactly one h1`);
       failed = true;
     }
     continue;
